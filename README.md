@@ -1,6 +1,6 @@
-# СЕВ Метал — Website
+# SEV Metal — Website
 
-A responsive business website developed from scratch for **СЕВ Метал ЕООД**, a metal fabrication company based in Varna, Bulgaria.
+A responsive business website developed from scratch for a metal fabrication company based in Varna, Bulgaria.
 
 The website presents the company's products, services, completed projects, company information, and contact options through a custom responsive interface.
 
