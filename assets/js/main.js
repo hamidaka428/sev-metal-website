@@ -40,7 +40,7 @@ if(grid){
   // newest uploads: listed first and shown at the top of the gallery
   const facebookAlbums=[
     {cat:'konstrukcii',label:'Метални конструкции',prefix:'konstrukcii',start:83,count:89,prepend:true},
-    {cat:'vrati',label:'Метални врати',prefix:'vrati',count:177,ext:{58:'png'}},
+    {cat:'vrati',label:'Метални врати',prefix:'vrati',count:177},
     {cat:'parapeti',label:'Парапети',prefix:'parapeti',count:216},
     {cat:'ogradi',label:'Огради и порти',prefix:'ogradi-vrati',count:73},
     {cat:'konstrukcii',label:'Метални конструкции',prefix:'konstrukcii',count:82},
@@ -48,13 +48,14 @@ if(grid){
     {cat:'reshetki',label:'Решетки',prefix:'reshetki',count:76}
   ];
   const newest=[];
-  facebookAlbums.forEach(({cat,label,prefix,count,start=1,prepend=false,ext={}})=>{
+  facebookAlbums.forEach(({cat,label,prefix,count,start=1,prepend=false})=>{
     for(let n=start;n<=count;n++){
-      const src=`assets/img/facebook/${prefix}-${String(n).padStart(3,'0')}.${ext[n]||'jpg'}`;
+      const name=`facebook/${prefix}-${String(n).padStart(3,'0')}`;
+      const src=`assets/img/thumbs/${name}.webp`, full=`assets/img/${name}.webp`;
       const item=document.createElement('div');
       item.className='g-item';
       item.dataset.cat=cat;
-      item.innerHTML=`<img src="${src}" data-full="${src}" alt="${label} — СЕВ Метал Варна" loading="lazy"/><span class="tag">${label}</span>`;
+      item.innerHTML=`<img src="${src}" data-full="${full}" alt="${label} — СЕВ Метал Варна" loading="lazy" decoding="async"/><span class="tag">${label}</span>`;
       if(prepend) newest.push(item); else grid.append(item);
     }
   });

@@ -1,0 +1,15 @@
+# sevmetal.bg — redirects
+
+RewriteEngine On
+
+# 1) http:// and www. -> https://sevmetal.bg (one canonical address)
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^(.*)$ https://sevmetal.bg/$1 [L,R=301]
+
+# 2) /index.html -> /
+RewriteCond %{THE_REQUEST} \s/index\.html[\s?] [NC]
+RewriteRule ^index\.html$ https://sevmetal.bg/ [L,R=301]
+
+# 3) Old page addresses -> new pages
+RewriteRule ^metalni-reshetki-varna\.html$ https://sevmetal.bg/reshetki-varna.html [L,R=301]
