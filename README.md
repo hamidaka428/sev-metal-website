@@ -10,6 +10,7 @@ The website presents the company's products, services, completed projects, compa
 
 - Home (`index.html`)
 - Products (`izdeliya.html`)
+- Category landing pages: `metalni-vrati-varna.html`, `ogradi-i-porti-varna.html`, `parapeti-varna.html`, `reshetki-varna.html`, `metalni-konstrukcii-varna.html`
 - Gallery (`galeriya.html`)
 - About (`za-nas.html`)
 - Contact (`kontakti.html`)
@@ -62,7 +63,6 @@ sev-metal-website/
 │   │   └── main.js
 │   └── img/
 │       ├── facebook/
-│       ├── izdeliya/
 │       ├── konstrukcii/
 │       ├── ogradi/
 │       ├── parapeti/

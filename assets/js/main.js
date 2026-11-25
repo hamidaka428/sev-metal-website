@@ -37,7 +37,9 @@ if(sb){
 // gallery filter + lightbox
 const grid=document.getElementById('gallery');
 if(grid){
+  // newest uploads: listed first and shown at the top of the gallery
   const facebookAlbums=[
+    {cat:'konstrukcii',label:'Метални конструкции',prefix:'konstrukcii',start:83,count:89,prepend:true},
     {cat:'vrati',label:'Метални врати',prefix:'vrati',count:177,ext:{58:'png'}},
     {cat:'parapeti',label:'Парапети',prefix:'parapeti',count:216},
     {cat:'ogradi',label:'Огради и порти',prefix:'ogradi-vrati',count:73},
@@ -45,16 +47,18 @@ if(grid){
     {cat:'ogradi',label:'Огради и порти',prefix:'ogradi',count:55},
     {cat:'reshetki',label:'Решетки',prefix:'reshetki',count:76}
   ];
-  facebookAlbums.forEach(({cat,label,prefix,count,ext={}})=>{
-    for(let n=1;n<=count;n++){
+  const newest=[];
+  facebookAlbums.forEach(({cat,label,prefix,count,start=1,prepend=false,ext={}})=>{
+    for(let n=start;n<=count;n++){
       const src=`assets/img/facebook/${prefix}-${String(n).padStart(3,'0')}.${ext[n]||'jpg'}`;
       const item=document.createElement('div');
       item.className='g-item';
       item.dataset.cat=cat;
       item.innerHTML=`<img src="${src}" data-full="${src}" alt="${label} — СЕВ Метал Варна" loading="lazy"/><span class="tag">${label}</span>`;
-      grid.append(item);
+      if(prepend) newest.push(item); else grid.append(item);
     }
   });
+  grid.prepend(...newest);
   const items=[...grid.querySelectorAll('.g-item')];
   document.querySelectorAll('.gal-filter button').forEach(btn=>{
     btn.addEventListener('click',()=>{
@@ -64,6 +68,9 @@ if(grid){
       items.forEach(it=>it.style.display=(f==='all'||it.dataset.cat===f)?'':'none');
     });
   });
+  // open a category from the URL hash, e.g. galeriya.html#parapeti
+  const hb=document.querySelector(`.gal-filter button[data-filter="${location.hash.slice(1)}"]`);
+  if(hb) hb.click();
   // lightbox
   const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lbCount=document.getElementById('lbCount');
   let visible=[],cur=0;
